@@ -1,0 +1,45 @@
+body {
+    background: #111;
+    color: white;
+}
+  
+.board {
+    padding-top: 60px;
+    width: 600px;
+    margin: auto;
+
+}
+
+table {
+    border-spacing: 10px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    text-align: center;
+
+}
+
+.mine {
+    
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+ 
+    
+    
+} 
+
+.selected {
+    background: rgb(119, 67, 67);
+}
+
+.lvl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+

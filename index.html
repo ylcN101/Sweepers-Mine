@@ -7,22 +7,29 @@
     <title>Mines Sweeper</title>
     <link rel="stylesheet" href="main.css">
 </head>
-<body>
-    <body onload="initGame()" >
+<body >
+
+    <body  oncontextmenu="return false" onload="initGame()" >
         <h1>Mines Sweeper</h1>
 
+        
+
+        <div>
+            <button class="restart" onclick="gameOver(this)" >😎</button>
+            <h2>Mines on Board: <span>2</span> </h2>
+        </div>
+    </div>
+    <div class="time" id="count_up_timer">00:00:00</div>
+    
+    <div class="lives">
 
     </div>
 
-    <div id="count_up_timer">00:00:00</div>
-
-
-    
     
     <div class="lvl">
-    <button class="beginner" onclick="chooseLevel(16)" >Beginner</button>
-    <button class="medium" onclick="chooseLevel(64)" >Medium</button>
-    <button class="expert" onclick="chooseLevel(144)" >Expert</button>
+    <button class="beginner" onclick="chooseLevel(4)" >Beginner</button>
+    <button class="medium" onclick="chooseLevel(8)" >Medium</button>
+    <button class="expert" onclick="chooseLevel(12)" >Expert</button>
 
 </div>
     

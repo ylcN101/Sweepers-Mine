@@ -216,31 +216,7 @@ function cellClicked(elCell, i, j) {
   else hideSeatDetails()
 }
 
-// function addMine() {
-//   var mine = getRandomCell()
-//   gBoard[mine.i][mine.j].isMine = true
-// }
-
-// function getRandomCell() {
-//   var emptyCells = getEmptyCells()
-//   var randIdx = getRandomIntInclusive(0, emptyCells.length - 1)
-//   return emptyCells[randIdx]
-// }
-
-// function getEmptyCells() {
-//   const emptyCells = []
-//   for (var i = 0; i < gBoard.length; i++) {
-//     for (var j = 0; j < gBoard[0].length; j++) {
-//       if (!gBoard[i][j].isMine) {
-//         emptyCells.push({ i, j })
-//       }
-//     }
-//   }
-//   return emptyCells
-// }
-
-// function renderCell(location, value) {
-//   const cellSelector = '.' + getClassNamePos(location) // cell-i-j
-//   const elCell = document.querySelector(cellSelector)
-//   elCell.innerHTML = value
-// }
+function getClassNamePos(location) {
+  const cellClass = 'cell-' + location.i + '-' + location.j
+  return cellClass
+}

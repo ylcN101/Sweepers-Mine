@@ -1,45 +1,112 @@
 body {
     background: #111;
     color: white;
+    font-family: sans-serif;
+    background-color: #474E68;
+    text-align: center;
+}
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+  
 }
   
 .board {
-    padding-top: 60px;
-    width: 600px;
+    
     margin: auto;
-
+    text-align: center;
+    border: #111;
+    border-radius: 40px;
+    margin-top: 30px;
+    border: 3px solid #111;
+    padding: 50px;
+    text-align: center;
 }
+
 
 table {
     border-spacing: 10px;
+    
+    
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 55px;
+    height: 55px;
     border: 1px solid gray;
     text-align: center;
-
+    color: #111;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer ;
+    color: rgb(231, 219, 219)
 }
 
 .mine {
-    
-    justify-content: center;
     align-items: center;
-    font-size: 40px;
- 
-    
-    
+
 } 
 
 .selected {
-    background: rgb(119, 67, 67);
+    background: lightcoral;
+    transition: 1s;
 }
 
-.lvl {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+
+
+#count_up_timer{
+    font-size: 20px;
+    color:whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 30px;
+
+  
 }
 
+.beginner {
+    margin-right: 10px;
+    margin-left: 10px;
+    font-style: italic;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10%;
+    padding: 10px;
+    background-color: white;
+}
+.medium {
+    margin-right: 10px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10%;
+    padding: 10px;
+    background-color: white
+    
+}
+.expert {
+    margin-right: 10px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10%;
+    padding: 10px;
+    background-color: white
+}
+
+.restart {
+    margin-right: 10px;
+    font-family: sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.lives{
+
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 4px;
+}

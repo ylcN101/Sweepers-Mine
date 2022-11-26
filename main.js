@@ -11,6 +11,7 @@ var gElSelectedSeat = null
 var gInterval = null
 var gMineCount = 0
 var gFlagCount = 0
+var HINT = 3
 
 var gBoard
 
@@ -69,7 +70,7 @@ function renderBoard(board) {
 
       cellClass += currCell.isMine ? 'mine' : ' '
 
-      strHTML += `\t<td class="cell ${cellClass}"" 
+      strHTML += `\t<td id=${i + j * gLevel.SIZE} class="cell ${cellClass}"" 
       onclick="cellClicked(this, ${i}, ${j})" > 
       `
 
@@ -87,9 +88,12 @@ function cellClicked(elCell, i, j) {
   if (!gGame.isOn) return
 
   var cell = gBoard[i][j]
+  console.log({ cell })
+
   setMinesNegsCount(i, j, gBoard)
 
   elCell.innerText = cell.minesAroundCount
+
   if (cell.isShown) return
 
   if (gElSelectedSeat) {
@@ -98,7 +102,9 @@ function cellClicked(elCell, i, j) {
   gGame.shownCount++
 
   gElSelectedSeat = elCell
-  if (gElSelectedSeat) elCell.classList.add('selected')
+
+  //if (gElSelectedSeat) elCell.classList.add('selected')
+  elCell.classList.add('selected')
 
   if (cell.isMine) {
     LIVES--
@@ -112,6 +118,11 @@ function cellClicked(elCell, i, j) {
   if (!gInterval && !cell.isMine) {
     gInterval = setInterval(countUpTimer, 1000)
   }
+
+  if (cell.minesAroundCount === 0) {
+    ExposeAllNegs(i, j)
+  }
+
   checkVictory()
 }
 
@@ -205,6 +216,7 @@ function checkVictory() {
   if (gGame.shownCount === gLevel.SIZE ** 2 - gLevel.MINES) {
     clearInterval(gInterval)
     var elRestart = document.querySelector('.restart')
+    elRestart.addEventListener('click', restartGame)
     elRestart.innerText = '🏆'
     gGame.isOn = false
   }
@@ -213,4 +225,52 @@ function checkVictory() {
 function createLives() {
   var elLives = document.querySelector('.lives')
   elLives.innerHTML = '❤️' + '❤️' + '❤️'
+}
+
+// function showAllMinesAround(cellI, cellJ, mat = gBoard) {
+//   for (var i = cellI - 1; i <= cellI + 1; i++) {
+//     if (i < 0 || i >= mat.length) continue
+//     for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+//       if (j < 0 || j >= mat[0].length) continue
+//       if (!mat[i][j].isShown) {
+//         gGame.shownCount--
+//         mat[i][j].isShown = true
+//         if (mat[i][j].minesAroundCount === 0) {
+//           showAllMinesAround(i, j)
+//         }
+//       }
+//     }
+//   }
+// }
+
+function ExposeAllNegs(i, j) {
+  // console.log({ i, j })
+  if (
+    i < 0 ||
+    i === gLevel.SIZE ||
+    j < 0 ||
+    j === gLevel.SIZE ||
+    gBoard[i][j].isShown === true // if cell is shown
+  ) {
+    return
+  }
+
+  if (gBoard[i][j].minesAroundCount !== 0) {
+    gBoard[i][j].isShown = true
+    var board = document.getElementById(i + j * gLevel.SIZE)
+    console.log({ i, j })
+    board.innerText = gBoard[i][j].minesAroundCount
+    console.log({ board })
+    // console.log(gBoard[i][j])
+
+    // console.log(i, j)
+    return
+  }
+  gBoard[i][j].isShown = true
+  var board = document.getElementById(i + j * gLevel.SIZE)
+  board.innerText = gBoard[i][j].minesAroundCount
+  ExposeAllNegs(i - 1, j)
+  ExposeAllNegs(i + 1, j)
+  ExposeAllNegs(i, j - 1)
+  ExposeAllNegs(i, j + 1)
 }
